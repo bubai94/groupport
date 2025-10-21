@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IOP Treatment Accordion</title>
+  <style>
+    .iop-section {
+      font-family: "Europa", sans-serif;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    /* Layout container */
+    .iop-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    /* Accordion styles */
+    .iop-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .iop-item {
+      border-bottom: 1px solid #9db4c0;
+      background-color: transparent;
+      padding: 8px 0;
+      overflow: hidden;
+    }
+
+    .iop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      color: #15324a;
+      transition: color 0.3s ease;
+    }
+
+    .iop-header span {
+      font-weight: 400;
+      font-size: 20px;
+      color: #3D5581;
+    }
+
+    .iop-header:hover {
+      color: #1d4d6e;
+    }
+
+    .iop-icon {
+      font-size: 22px;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .iop-content {
+      max-height: 0;
+      overflow: hidden;
+      font-size: 14px;
+      color: #37566e;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .iop-content p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #3D5581;
+    }
+
+    .iop-item.active .iop-content {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .iop-item.active .iop-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .iop-container {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="iop-section">
+    <div class="iop-container">
+      <!-- Left Column -->
+      <div class="iop-column">
+        <div class="iop-item active">
+          <div class="iop-header">
+            <span>Dialectical Behavior Therapy (DBT)</span>
+            <span class="iop-icon">−</span>
+          </div>
+          <div class="iop-content">
+            <p>DBT is a popular method that can help you regulate intense emotions, improve relationships,
+              and build skills for mindfulness, distress tolerance, and emotional balance. If you're
+              struggling with overwhelming emotions or destructive and impulsive behaviors, this therapy
+              can be especially beneficial.</p>
+          </div>
+        </div>
+
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Cognitive Behavioral Therapy (CBT)</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>Another common method, CBT focuses on identifying and changing the unhelpful thought patterns
+              that contribute to emotional distress. By shifting these patterns, you can start to build
+              the coping skills needed to improve daily life.</p>
+          </div>
+        </div>
+
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Exposure and Response Prevention Therapy (ERP)</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>Especially beneficial for those struggling with anxiety and OCD, this therapy gradually helps
+              you face feared situations. You'll learn to resist the urge to engage with unhealthy coping
+              mechanisms.</p>
+          </div>
+        </div>
+
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Acceptance and Commitment Therapy (ACT)</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>If you're the type who likes to avoid your negative thoughts and emotions, ACT can help you
+              face them without avoidance or conflict. By clarifying your personal values, you can make
+              decisions that align with what matters most in your life.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="iop-column">
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Emotion-Focused Therapy (EFT)</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>Deep emotional experiences can be overwhelming, but EFT helps you better understand and work
+              through these feelings. The process fosters emotional connection, healing, and stronger
+              interpersonal relationships.</p>
+          </div>
+        </div>
+
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Motivational Interviewing</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>Struggling with self-doubt? This client-centered approach helps you build the motivation you
+              need to make positive life changes. Overcome ambivalence and start building the confidence
+              you need to grow.</p>
+          </div>
+        </div>
+
+        <div class="iop-item">
+          <div class="iop-header">
+            <span>Interpersonal Therapy (IPT)</span>
+            <span class="iop-icon">+</span>
+          </div>
+          <div class="iop-content">
+            <p>IPT focuses on improving communication and relationships while addressing the negative
+              patterns that contribute to emotional distress. It’s effective for individuals experiencing
+              depression, grief, or life transitions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const iopItems = document.querySelectorAll(".iop-item");
+
+    iopItems.forEach((item) => {
+      const header = item.querySelector(".iop-header");
+
+      header.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        // Close all accordions
+        iopItems.forEach((i) => {
+          i.classList.remove("active");
+          i.querySelector(".iop-icon").textContent = "+";
+        });
+
+        // Toggle selected one
+        if (!isActive) {
+          item.classList.add("active");
+          item.querySelector(".iop-icon").textContent = "−";
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
